@@ -26,5 +26,7 @@ export default function fetchLeaderboard(
     .then((r) => {
       res.status(200).json(r.data);
     })
-    .catch((e) => console.error(e));
+    .catch((e) => {
+      res.status(500).send(e);
+    });
 }
