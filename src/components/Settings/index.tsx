@@ -63,7 +63,7 @@ export const Settings = () => {
         <Grid item container spacing={0.3}>
           <Grid item>
             <Typography>
-              <b>Show Prototype:</b>
+              <b>Debug mode:</b>
             </Typography>
           </Grid>
           <Grid item>
