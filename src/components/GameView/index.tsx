@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 import { ScreenOpts } from '@/types';
 import { Box, Grid, Typography } from '@mui/material';
 import { GAME_DURATION } from '@/cfg/game';
 import { rng } from '@/scripts/rng';
-import { useSettings } from '@/hooks/useSettings';
 import { Target } from './target';
 
 interface SubProps {
@@ -17,18 +15,12 @@ interface SubProps {
   score: number;
 }
 
-{
-  /* NOTE: coding this part at the end of the day on friday with time running out, I tried to make this hack somewhat tasteful */
-}
-
 export const GameView = ({
   screenSet,
   parseDiff,
   incrementScore,
   score,
 }: SubProps) => {
-  const { username } = useSettings();
-
   const [activeTarget, activeTargetSet] = useState<number>(rng(1, 12));
 
   const switchTarget = useCallback(() => {
@@ -50,28 +42,11 @@ export const GameView = ({
     console.log('GAME DURATION: ', GAME_DURATION);
     const gameInterval = setInterval(() => {
       screenSet('end-game');
-    }, 1000);
+    }, GAME_DURATION);
     return () => {
       clearInterval(gameInterval);
     };
   }, [screenSet]);
-
-  // save score
-  useEffect(() => {
-    return () => {
-      const saveScore = async () => {
-        return axios({
-          method: 'post',
-          url: '/api/saveScore',
-          data: {
-            username,
-            score,
-          },
-        });
-      };
-      saveScore();
-    };
-  }, [username, score]);
 
   return (
     <Box>
@@ -86,6 +61,7 @@ export const GameView = ({
         spacing={1}
         alignItems={'center'}
       >
+        {/* NOTE: coding this part at the end of the day on friday with time running out, I tried to make this hack somewhat tasteful. Was hitting ReactNode vs JSX.Element on Grid children */}
         {'😂'
           .padEnd(12, '🤣')
           .split('')
