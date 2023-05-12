@@ -7,7 +7,6 @@ import { stringCapitalize } from '@/scripts/stringCapitalize';
 export const Leaderboard = () => {
   const [leaderboard, leaderboardSet] = useState<LeaderboardType>([]);
 
-  // we will fetch the data on every mount and clear it on unmount so we don't have to worry about refresh
   useEffect(() => {
     const fetchLeaderboard = async () => {
       return axios<ApiResponse>({
