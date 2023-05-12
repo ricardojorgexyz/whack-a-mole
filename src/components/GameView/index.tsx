@@ -33,15 +33,20 @@ export const GameView = ({
     const targetInterval = setInterval(() => {
       switchTarget();
     }, parseDiff.int);
+    return () => {
+      clearInterval(targetInterval);
+    };
+  }, [parseDiff, activeTarget, switchTarget]);
 
+  useEffect(() => {
+    console.log('GAME DURATION: ', GAME_DURATION);
     const gameInterval = setInterval(() => {
       screenSet('end-game');
     }, GAME_DURATION);
     return () => {
-      clearInterval(targetInterval);
       clearInterval(gameInterval);
     };
-  }, [parseDiff, activeTarget, screenSet, switchTarget]);
+  }, [screenSet]);
 
   return (
     <Box>

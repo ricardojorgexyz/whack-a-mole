@@ -8,9 +8,10 @@ import { Settings } from '../Settings';
 
 interface SubProps {
   screenSet: React.Dispatch<React.SetStateAction<ScreenOpts>>;
+  scoreSet: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const HomeWelcome = ({ screenSet }: SubProps) => {
+export const HomeWelcome = ({ screenSet, scoreSet }: SubProps) => {
   const [showLeaderboard, showLeaderboardSet] = useState<boolean>(false);
   const openLeaderboard = useCallback(
     () => showLeaderboardSet(true),
@@ -40,7 +41,15 @@ export const HomeWelcome = ({ screenSet }: SubProps) => {
         </Box>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Button fullWidth variant="contained" size="large">
+            <Button
+              fullWidth
+              variant="contained"
+              size="large"
+              onClick={() => {
+                scoreSet(0);
+                screenSet('in-game');
+              }}
+            >
               PLAY
             </Button>
           </Grid>

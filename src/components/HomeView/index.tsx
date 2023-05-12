@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { ScreenOpts } from '@/types';
 import {
   GAME_DIFF_EASY_INTERVAL,
@@ -18,7 +18,7 @@ import { GameView } from '../GameView';
 export const HomeView = () => {
   const { diff } = useSettings();
 
-  const [screen, screenSet] = useState<ScreenOpts>('in-game');
+  const [screen, screenSet] = useState<ScreenOpts>('no-game');
   const [score, scoreSet] = useState<number>(0);
 
   const parseDiff = useMemo(() => {
@@ -50,7 +50,9 @@ export const HomeView = () => {
 
   return (
     <Box>
-      {screen === 'no-game' && <HomeWelcome screenSet={screenSet} />}
+      {screen === 'no-game' && (
+        <HomeWelcome screenSet={screenSet} scoreSet={scoreSet} />
+      )}
       {screen === 'in-game' && (
         <GameView
           score={score}
@@ -59,7 +61,22 @@ export const HomeView = () => {
           screenSet={screenSet}
         />
       )}
-      {screen === 'end-game' && <HomeWelcome screenSet={screenSet} />}
+      {screen === 'end-game' && (
+        <Box>
+          <Box textAlign={'center'}>
+            <Typography variant="h3">Your Score: {score}</Typography>
+          </Box>
+          <Box textAlign={'center'} mt={3}>
+            <Button
+              size="large"
+              variant="contained"
+              onClick={() => screenSet('no-game')}
+            >
+              EXIT
+            </Button>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };
