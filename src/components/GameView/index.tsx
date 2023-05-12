@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import { ScreenOpts } from '@/types';
 import { Box, Grid, Typography } from '@mui/material';
 import { GAME_DURATION } from '@/cfg/game';
 import { rng } from '@/scripts/rng';
+import { useSettings } from '@/hooks/useSettings';
 import { Target } from './target';
 
 interface SubProps {
@@ -21,6 +23,8 @@ export const GameView = ({
   incrementScore,
   score,
 }: SubProps) => {
+  const { username } = useSettings();
+
   const [activeTarget, activeTargetSet] = useState<number>(rng(1, 12));
 
   const switchTarget = useCallback(() => {
@@ -42,11 +46,28 @@ export const GameView = ({
     console.log('GAME DURATION: ', GAME_DURATION);
     const gameInterval = setInterval(() => {
       screenSet('end-game');
-    }, GAME_DURATION);
+    }, 1000);
     return () => {
       clearInterval(gameInterval);
     };
   }, [screenSet]);
+
+  // save score
+  useEffect(() => {
+    return () => {
+      const saveScore = async () => {
+        return axios({
+          method: 'post',
+          url: '/api/saveScore',
+          data: {
+            username,
+            score,
+          },
+        });
+      };
+      saveScore();
+    };
+  }, [username, score]);
 
   return (
     <Box>
