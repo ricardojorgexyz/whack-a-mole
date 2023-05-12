@@ -53,6 +53,7 @@ export const HomeView = () => {
       {screen === 'no-game' && <HomeWelcome screenSet={screenSet} />}
       {screen === 'in-game' && (
         <GameView
+          score={score}
           incrementScore={incrementScore}
           parseDiff={parseDiff}
           screenSet={screenSet}
