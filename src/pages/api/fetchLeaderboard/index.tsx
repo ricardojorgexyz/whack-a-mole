@@ -8,7 +8,7 @@ import { token, endpoint } from '../../../cfg/airtable';
  * the top scores and I'm limiting the results to 10 on
  * the end point
  *
- * 'https://api.airtable.com/v0/{tableId}/game-table?maxRecords=10&view=sorted
+ * https://api.airtable.com/v0/{tableId}/game-table?maxRecords=10&view=sorted
  *
  */
 
