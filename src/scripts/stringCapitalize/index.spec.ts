@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { stringCapitalize } from '.';
 
-test.describe('stringCapitalize()', () => {
+test.describe('test stringCapitalize()', () => {
   test('should capitalize the first letter of a string', () => {
     expect(stringCapitalize('hello')).toBe('Hello');
   });
