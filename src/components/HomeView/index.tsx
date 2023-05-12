@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from 'react';
 import { Typography, Box, Grid, Button, Dialog } from '@mui/material';
 import { Leaderboard } from '../Leaderboard';
+import { useSettings } from '@/hooks/useSettings';
 
 export const HomeView = () => {
   const [showLeaderboard, showLeaderboardSet] = useState<boolean>(false);
@@ -14,6 +15,10 @@ export const HomeView = () => {
     () => showLeaderboardSet(false),
     [showLeaderboardSet],
   );
+
+  const { username } = useSettings();
+
+  console.log({ username });
 
   return (
     <Box>
