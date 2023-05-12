@@ -21,3 +21,5 @@ export type ApiResponseRecord = {
 export type ApiResponse = {
   records: ApiResponseRecord[];
 };
+
+export type ScreenOpts = 'no-game' | 'in-game' | 'end-game';
