@@ -2,9 +2,9 @@
 
 import React, { useState, useCallback } from 'react';
 import { Typography, Box, Grid, Button, Dialog } from '@mui/material';
-import { useSettings } from '@/hooks/useSettings';
 import { ScreenOpts } from '@/types';
 import { Leaderboard } from '../Leaderboard';
+import { Settings } from '../Settings';
 
 interface SubProps {
   screenSet: React.Dispatch<React.SetStateAction<ScreenOpts>>;
@@ -20,10 +20,15 @@ export const HomeWelcome = ({ screenSet }: SubProps) => {
     () => showLeaderboardSet(false),
     [showLeaderboardSet],
   );
-
-  const { username } = useSettings();
-
-  console.log({ username });
+  const [showSettings, showSettingsSet] = useState<boolean>(false);
+  const openSettings = useCallback(
+    () => showSettingsSet(true),
+    [showSettingsSet],
+  );
+  const closeSettings = useCallback(
+    () => showSettingsSet(false),
+    [showSettingsSet],
+  );
 
   return (
     <Box>
@@ -50,7 +55,12 @@ export const HomeWelcome = ({ screenSet }: SubProps) => {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Button fullWidth variant="contained" size="large">
+            <Button
+              fullWidth
+              variant="contained"
+              size="large"
+              onClick={openSettings}
+            >
               SETTINGS
             </Button>
           </Grid>
@@ -60,6 +70,12 @@ export const HomeWelcome = ({ screenSet }: SubProps) => {
       <Dialog open={showLeaderboard} onClose={closeLeaderboard}>
         <Box p={1}>
           <Leaderboard />
+        </Box>
+      </Dialog>
+      {/* Settings dialog */}
+      <Dialog open={showSettings} onClose={closeSettings}>
+        <Box p={1}>
+          <Settings />
         </Box>
       </Dialog>
     </Box>
