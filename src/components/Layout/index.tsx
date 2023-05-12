@@ -1,7 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Box, Grid, CssBaseline, Container } from '@mui/material';
+import {
+  Box,
+  Grid,
+  CssBaseline,
+  Container,
+  Link,
+  Typography,
+} from '@mui/material';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -18,7 +25,15 @@ export const Layout = ({ children }: LayoutProps) => {
         sx={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}
         textAlign="center"
       >
-        v{`${VERSION}`}
+        <Typography variant="body2">
+          <Link
+            href="https://github.com/ricardojorgeio/whack-a-mole"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            v{`${VERSION}`}
+          </Link>
+        </Typography>
       </Box>
       {/* Body */}
       <Container>
