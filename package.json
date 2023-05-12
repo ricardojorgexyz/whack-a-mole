@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npx playwright test",
+    "test-install": "npx playwright install --with-deps",
+    "test-report": "npx playwright show-report"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -25,6 +28,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.33.0",
     "prettier": "^2.8.8",
     "semantic-release": "^18.0.1"
   }
