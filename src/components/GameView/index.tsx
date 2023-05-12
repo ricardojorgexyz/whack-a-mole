@@ -17,6 +17,10 @@ interface SubProps {
   score: number;
 }
 
+{
+  /* NOTE: coding this part at the end of the day on friday with time running out, I tried to make this hack somewhat tasteful */
+}
+
 export const GameView = ({
   screenSet,
   parseDiff,
@@ -82,7 +86,6 @@ export const GameView = ({
         spacing={1}
         alignItems={'center'}
       >
-        {/* NOTE: coding this part at the end of the day on friday with time running out, I tried to make this hack somewhat tasteful */}
         {'😂'
           .padEnd(12, '🤣')
           .split('')
