@@ -40,11 +40,12 @@ export const Leaderboard = () => {
         </Typography>
       </Box>
       <Grid container justifyContent="center" spacing={0.3}>
-        {leaderboard.map((record) => {
+        {leaderboard.map((record, i) => {
           return (
-            <Grid item xs={12} key={record.id}>
+            <Grid item xs={12} key={`${record.id}-${i}`}>
               <Box textAlign="center">
-                {stringCapitalize(record.username, true)}: <b>{record.score}</b>
+                {i + 1}. {stringCapitalize(record.username, true)}:{' '}
+                <b>{record.score}</b>
               </Box>
             </Grid>
           );
