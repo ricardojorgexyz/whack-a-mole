@@ -40,7 +40,10 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
   );
 
   const updateUsername: SettingsType['updateUsername'] = useCallback(
-    (str) => usernameSet(str),
+    (str) => {
+      // TODO: validation
+      usernameSet(str);
+    },
     [usernameSet],
   );
   const updateDiff: SettingsType['updateDiff'] = useCallback(
