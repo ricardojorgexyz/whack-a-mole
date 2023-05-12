@@ -3,6 +3,7 @@ import { ScreenOpts } from '@/types';
 import { Box, Grid, Typography } from '@mui/material';
 import { GAME_DURATION } from '@/cfg/game';
 import { rng } from '@/scripts/rng';
+import { useSettings } from '@/hooks/useSettings';
 import { Target } from './target';
 
 interface SubProps {
@@ -21,6 +22,7 @@ export const GameView = ({
   incrementScore,
   score,
 }: SubProps) => {
+  const { showProto } = useSettings();
   const [activeTarget, activeTargetSet] = useState<number>(rng(1, 12));
 
   const switchTarget = useCallback(() => {
@@ -49,7 +51,18 @@ export const GameView = ({
   }, [screenSet]);
 
   return (
-    <Box>
+    <Box
+      sx={
+        showProto
+          ? {}
+          : {
+              backgroundImage: 'url("/static/WAM_bg.jpg")',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+            }
+      }
+    >
       <Box textAlign="center" pb={9}>
         <Typography variant="h6" paragraph>
           Your Score: {score}
