@@ -21,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className={roboto.className}>{children}</main>
+        <main className={roboto.className} style={{ minHeight: '100vh' }}>
+          {children}
+        </main>
       </body>
     </html>
   );
