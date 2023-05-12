@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Grid, Typography } from '@mui/material';
 import { Leaderboard as LeaderboardType, ApiResponse } from '@/types';
+import { stringCapitalize } from '@/scripts/stringCapitalize';
 
 export const Leaderboard = () => {
   const [leaderboard, leaderboardSet] = useState<LeaderboardType>([]);
@@ -35,7 +36,7 @@ export const Leaderboard = () => {
     <Box>
       <Box>
         <Typography variant="h6" align="center" paragraph>
-          Top 10 Players
+          {stringCapitalize('top 10 players', true)}
         </Typography>
       </Box>
       <Grid container justifyContent="center" spacing={0.3}>
@@ -43,7 +44,7 @@ export const Leaderboard = () => {
           return (
             <Grid item xs={12} key={record.id}>
               <Box textAlign="center">
-                {record.username}: <b>{record.score}</b>
+                {stringCapitalize(record.username, true)}: <b>{record.score}</b>
               </Box>
             </Grid>
           );
