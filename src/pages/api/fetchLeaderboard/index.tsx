@@ -1,24 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { token, endpoint } from '../../../cfg/airtable';
+import { token, endpoint } from '@/cfg/airtable';
 
 /*
  *
- * NOTE: I'm using a table view that is already sorted to
+ * NOTE: I'm using a table view that has already sorted
  * the top scores and I'm limiting the results to 10 on
- * the end point
- *
- * 'https://api.airtable.com/v0/{tableId}/game-table?maxRecords=10&view=sorted
+ * the endpoint
  *
  */
 
-export default function fetchLeaderboard(
-  _req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  axios({
+const fetchLeaderboard = async (_req: NextApiRequest, res: NextApiResponse) => {
+  await axios({
     method: 'get',
-    url: endpoint,
+    url: `${endpoint}?maxRecords=10&view=sorted`,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -26,5 +21,9 @@ export default function fetchLeaderboard(
     .then((r) => {
       res.status(200).json(r.data);
     })
-    .catch((e) => console.error(e));
-}
+    .catch((e) => {
+      res.status(500).send(e);
+    });
+};
+
+export default fetchLeaderboard;

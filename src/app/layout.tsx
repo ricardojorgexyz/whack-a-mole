@@ -1,6 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+import { Layout } from '@/components/Layout';
+import { SettingsProvider } from '@/hooks/useSettings';
 
 export const metadata: Metadata = {
   title: 'Whack-a-mole',
@@ -21,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className={roboto.className}>{children}</main>
+        <main className={roboto.className}>
+          <SettingsProvider>
+            <Layout>{children}</Layout>
+          </SettingsProvider>
+        </main>
       </body>
     </html>
   );
