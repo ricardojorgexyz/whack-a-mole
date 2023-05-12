@@ -1,18 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+/**
+ * NOTE: Running e2e tests on Chrome, Firefox, and Safari
+ */
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
+test('Runs on browser', async ({ page }) => {
+  await page.goto('https://whack-a-mole-sigma.vercel.app/');
+  await expect(page).toHaveTitle(/Whack-a-mole/);
 });
