@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Grid, CssBaseline } from '@mui/material';
+import { Box, Grid, CssBaseline, Container } from '@mui/material';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,14 +21,17 @@ export const Layout = ({ children }: LayoutProps) => {
         v{`${VERSION}`}
       </Box>
       {/* Body */}
-      <Grid
-        container
-        style={{ minHeight: '95vh', position: 'absolute', top: 0, left: 0 }}
-        alignItems="center"
-        py={3}
-      >
-        <Grid item>{children}</Grid>
-      </Grid>
+      <Container>
+        <Grid
+          container
+          style={{ minHeight: '95vh', position: 'absolute', top: 0, left: 0 }}
+          alignItems="center"
+          justifyContent="center"
+          py={3}
+        >
+          <Grid item>{children}</Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 };
