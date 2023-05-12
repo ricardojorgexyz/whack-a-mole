@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+import { Layout } from '@/components/Layout';
 
 export const metadata: Metadata = {
   title: 'Whack-a-mole',
@@ -21,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className={roboto.className} style={{ minHeight: '100vh' }}>
-          {children}
+        <main className={roboto.className}>
+          <Layout>{children}</Layout>
         </main>
       </body>
     </html>
